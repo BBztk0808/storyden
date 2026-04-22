@@ -1,6 +1,13 @@
 "use client";
 
-import { PropsWithChildren, createContext, useContext, useEffect, useMemo, useState } from "react";
+import {
+  PropsWithChildren,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 import { I18N_COOKIE_NAME, Locale, defaultLocale, isLocale, normalizeLocale } from "./config";
 import { messages } from "./resources";
@@ -21,12 +28,24 @@ export function I18nProvider({ initialLocale, children }: Props) {
   const [locale, setLocaleState] = useState<Locale>(normalizeLocale(initialLocale));
 
   useEffect(() => {
-    const local = typeof window !== "undefined" ? localStorage.getItem(I18N_COOKIE_NAME) : null;
+    const normalized = normalizeLocale(initialLocale);
+    setLocaleState((previous) =>
+      previous === normalized ? previous : normalized,
+    );
+  }, [initialLocale]);
+
+  useEffect(() => {
+    const local =
+      typeof window !== "undefined"
+        ? localStorage.getItem(I18N_COOKIE_NAME)
+        : null;
 
     if (isLocale(local) && local !== locale) {
       setLocaleState(local);
     }
-  }, [locale]);
+    // Only hydrate from client storage once after mount to avoid update loops.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -42,7 +61,8 @@ export function I18nProvider({ initialLocale, children }: Props) {
 
     return {
       locale,
-      setLocale: setLocaleState,
+      setLocale: (next: Locale) =>
+        setLocaleState((previous) => (previous === next ? previous : next)),
       t,
     };
   }, [locale]);
