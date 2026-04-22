@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import { PropsWithChildren } from "react";
 
 import { getColourAsHex } from "src/utils/colour";
 
 import { inter, interDisplay } from "@/app/fonts";
 import { serverEnvironment } from "@/config";
+import { I18N_COOKIE_NAME, normalizeLocale } from "@/i18n/config";
 import { getSettings } from "@/lib/settings/settings-server";
 import { getIconURL } from "@/utils/icon";
 
@@ -15,8 +17,15 @@ import { Providers } from "./providers";
 const { API_ADDRESS, WEB_ADDRESS } = serverEnvironment();
 
 export default async function RootLayout({ children }: PropsWithChildren) {
+  const cookieStore = await cookies();
+  const locale = normalizeLocale(cookieStore.get(I18N_COOKIE_NAME)?.value);
+
   return (
-    <html lang="en" className={`${inter.variable} ${interDisplay.variable}`}>
+    <html
+      lang={locale}
+      className={`${inter.variable} ${interDisplay.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/*
           NOTE: Because the browser side does not support dynamic environment
@@ -40,7 +49,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
       </head>
 
       <body>
-        <Providers>{children}</Providers>
+        <Providers initialLocale={locale}>{children}</Providers>
       </body>
     </html>
   );
