@@ -4,12 +4,14 @@ import { FormControl } from "@/components/ui/FormControl";
 import { Button } from "@/components/ui/button";
 import { FormErrorText } from "@/components/ui/form/FormErrorText";
 import { Input } from "@/components/ui/input";
+import { useI18n } from "@/i18n/provider";
 import { styled } from "@/styled-system/jsx";
 import { vstack } from "@/styled-system/patterns";
 
 import { useRegisterEmailForm } from "./useRegisterEmailForm";
 
 export function RegisterEmailForm() {
+  const { t } = useI18n();
   const { form, handlers } = useRegisterEmailForm();
 
   return (
@@ -29,7 +31,7 @@ export function RegisterEmailForm() {
           w="full"
           size="sm"
           textAlign="center"
-          placeholder="email address"
+          placeholder={t("email address")}
           required
           {...form.register("email")}
         />
@@ -45,7 +47,7 @@ export function RegisterEmailForm() {
           w="full"
           size="sm"
           textAlign="center"
-          placeholder="username"
+          placeholder={t("username")}
           required
           {...form.register("handle")}
         />
@@ -60,7 +62,7 @@ export function RegisterEmailForm() {
           w="full"
           size="sm"
           textAlign="center"
-          placeholder="password"
+          placeholder={t("password")}
           autoComplete="new-password"
           {...form.register("password")}
         />
@@ -71,7 +73,7 @@ export function RegisterEmailForm() {
       </FormControl>
 
       <Button type="submit" w="full">
-        Register
+        {t("Register")}
       </Button>
 
       <FormErrorText>{form.formState.errors["root"]?.message}</FormErrorText>

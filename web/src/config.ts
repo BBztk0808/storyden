@@ -35,7 +35,7 @@ function isomorphicEnvironment(): Config {
     // Either way, the config isn't necessary on either of those pages as they
     // don't make client side API calls, they just render a basic error page.
     if (!parsed.success) {
-      console.error(
+      console.warn(
         `Invalid config loaded from \`window.__storyden__\`, this indicates a problem running the root layout <script> tag on the server render which should inject the API_ADDRESS and WEB_ADDRESS environment variables.
 
 A default configuration will be used, however this configuration will most likely not work correctly in most production environments.
@@ -52,9 +52,7 @@ If you see this, please open an issue at https://github.com/Southclaws/storyden/
       };
     }
 
-    const config = parsed.data;
-    console.log("loaded window config", config);
-    return config;
+    return parsed.data;
   } else {
     const config = serverEnvironment();
     return config;
