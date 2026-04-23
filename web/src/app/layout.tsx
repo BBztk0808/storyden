@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
+import Script from "next/script";
 import { PropsWithChildren } from "react";
 
 import { getColourAsHex } from "src/utils/colour";
@@ -19,6 +20,11 @@ const { API_ADDRESS, WEB_ADDRESS } = serverEnvironment();
 export default async function RootLayout({ children }: PropsWithChildren) {
   const cookieStore = await cookies();
   const locale = normalizeLocale(cookieStore.get(I18N_COOKIE_NAME)?.value);
+  const browserConfig = JSON.stringify({
+    API_ADDRESS,
+    WEB_ADDRESS,
+    source: "script",
+  });
 
   return (
     <html
@@ -34,10 +40,13 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           the window object. This allows us to set the API/frontend addresses
           without rebuilding the entire app.
         */}
-        <script>{`
-          window.__storyden__ = {"API_ADDRESS":"${API_ADDRESS}", "WEB_ADDRESS":"${WEB_ADDRESS}", "source": "script"};
-          console.log("set up window config", window.__storyden__);
-        `}</script>
+        <Script
+          id="storyden-browser-config"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.__storyden__ = ${browserConfig};`,
+          }}
+        />
 
         {/*
             NOTE: This stylesheet is fully server-side rendered but it's not
