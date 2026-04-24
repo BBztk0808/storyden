@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
-import { ContentComposer } from "@/components/content/ContentComposer/ContentComposer";
-import { ContentFormField } from "@/components/content/ContentComposer/ContentField";
 import { FormControl } from "@/components/ui/FormControl";
 import { FormErrorText } from "@/components/ui/FormErrorText";
 import { Heading } from "@/components/ui/heading";
@@ -17,7 +16,17 @@ import { SaveAction } from "../Action/Save";
 import { AdminAnchor } from "../Navigation/Anchors/Admin";
 import { Unready } from "../Unready";
 
-import { Form, Props, useSiteContextPane } from "./useSiteContextPane";
+import { Props, useSiteContextPane } from "./useSiteContextPane";
+
+const SiteContextPaneContentField = dynamic(
+  () =>
+    import("./SiteContextPaneEditor").then(
+      (mod) => mod.SiteContextPaneContentField,
+    ),
+  {
+    ssr: false,
+  },
+);
 
 export function SiteContextPane(props: Props) {
   const { ready, error, form, data, handlers } = useSiteContextPane(props);
@@ -80,9 +89,8 @@ export function SiteContextPane(props: Props) {
 
       {isEditingSettings ? (
         <FormControl>
-          <ContentFormField<Form>
+          <SiteContextPaneContentField
             control={form.control}
-            name="content"
             initialValue={settings.content}
             placeholder="About your community..."
           />
@@ -92,10 +100,9 @@ export function SiteContextPane(props: Props) {
         </FormControl>
       ) : (
         settings.content && (
-          <ContentComposer
-            initialValue={settings.content}
-            value={settings.content}
-            disabled
+          <div
+            className="typography"
+            dangerouslySetInnerHTML={{ __html: settings.content }}
           />
         )
       )}

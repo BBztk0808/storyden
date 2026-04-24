@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
-import Script from "next/script";
 import { PropsWithChildren } from "react";
 
 import { getColourAsHex } from "src/utils/colour";
@@ -23,7 +22,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
   const browserConfig = JSON.stringify({
     API_ADDRESS,
     WEB_ADDRESS,
-    source: "script",
+    source: "meta",
   });
 
   return (
@@ -36,16 +35,14 @@ export default async function RootLayout({ children }: PropsWithChildren) {
         {/*
           NOTE: Because the browser side does not support dynamic environment
           variables (obviously, it's a browser script) we hack around Next.js'
-          build-time variables by providing a direct reference to these inside
-          the window object. This allows us to set the API/frontend addresses
-          without rebuilding the entire app.
+          build-time variables by embedding the public config in the document.
+          This allows us to set the API/frontend addresses without rebuilding
+          the entire app.
         */}
-        <Script
+        <meta
           id="storyden-browser-config"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `window.__storyden__ = ${browserConfig};`,
-          }}
+          name="storyden-browser-config"
+          content={encodeURIComponent(browserConfig)}
         />
 
         {/*
