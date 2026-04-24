@@ -25,6 +25,20 @@
 
 # Storyden
 
+## 中文简介
+
+Storyden 是一个用于管理社区与内容的平台。你可以用它运行论坛、博客、新闻发布、链接收藏、目录、知识库等社区空间。
+
+快速体验：
+
+```sh
+docker run -p 8000:8000 ghcr.io/southclaws/storyden
+```
+
+然后打开 `http://localhost:8000`。
+
+本地开发请查看 [LOCAL_DEVELOPMENT.md](./LOCAL_DEVELOPMENT.md)。
+
 Storyden is the platform for managing community and content, wherever they call home. Run a forum, a blog, post news, curate cool sites, build a directory, a knowledgebase and more. [Learn more here](https://www.storyden.org/docs/introduction/what-is-storyden).
 
 If you'd like to help with some research, please fill in this tiny (anonymous) form: https://airtable.com/shrLY0jDp9CuXPB2X

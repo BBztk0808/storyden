@@ -1,10 +1,25 @@
 # Local Development
 
+## 中文说明
+
+本文档说明如何在本地运行 Storyden。代码块中的命令、路径、环境变量和端口名称保持英文，请原样复制使用。
+
+本地开发通常需要两个终端：一个运行 Go 后端 API，一个运行 `web` 目录中的 Next.js 前端。默认后端地址是 `http://localhost:8000`，默认前端地址是 `http://localhost:3000`。
+
 To run Storyden locally via the repository, it's pretty easy! You can use this approach for testing, experimenting and contributing.
 
 For full development and contribution documentation, please visit the [GitHub repository](https://github.com/Southclaws/storyden).
 
 ## Prerequisites
+
+## 前置依赖
+
+你需要安装以下工具：
+
+- **Go**：后端 API 使用 Go 编写。
+- **Node.js**：前端基于 Next.js。
+- **Yarn**：前端包管理器。
+- **Task**：用于代码生成和开发工作流的任务运行器。
 
 To run Storyden locally, you need to have the following installed:
 
@@ -17,7 +32,11 @@ If anything is missing from this list, please open an issue!
 
 ## Setup Instructions
 
+## 设置步骤
+
 ### 1. Clone the Repository
+
+### 1. 克隆仓库
 
 First, clone the repository:
 
@@ -27,6 +46,8 @@ cd storyden
 ```
 
 ### 2. Run the Backend (Go API)
+
+### 2. 运行后端（Go API）
 
 From inside the Storyden directory, you can run the API service:
 
@@ -42,7 +63,17 @@ This will start the API server with default configuration. You'll get:
 - OpenAPI documentation at `http://localhost:8000/api/docs`
 - CORS and cookie rules configured to support localhost
 
+这会使用默认配置启动 API 服务，并自动创建：
+
+- `./data/data.db` SQLite 数据库
+- `./data/assets` 本地资源目录，用于头像、图片、文件等
+- 本地 API 服务：`http://localhost:8000`
+- OpenAPI 文档：`http://localhost:8000/api/docs`
+- 适配 localhost 的 CORS 和 cookie 规则
+
 ### 3. Run the Frontend (Next.js)
+
+### 3. 运行前端（Next.js）
 
 You can also run the frontend service:
 
@@ -53,6 +84,8 @@ yarn dev
 ```
 
 The frontend will be available at `http://localhost:3000` and will by default automatically connect to the API at `http://localhost:8000`.
+
+前端会运行在 `http://localhost:3000`，默认会自动连接 `http://localhost:8000` 的 API。
 
 ## Development Workflow
 
