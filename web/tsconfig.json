@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ES6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -21,9 +22,9 @@
     "noImplicitReturns": true,
     "useUnknownInCatchVariables": true,
     "forceConsistentCasingInFileNames": true,
+    "downlevelIteration": true,
     "noEmit": true,
     "incremental": true,
-    "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
@@ -35,8 +36,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@/styled-system/*": ["./styled-system/*"]
+      "@/*": ["src/*"],
+      "@/styled-system/*": ["styled-system/*"]
     }
   },
   "include": [
