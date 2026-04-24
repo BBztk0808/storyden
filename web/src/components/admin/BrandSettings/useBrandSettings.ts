@@ -7,6 +7,7 @@ import { iconUpload } from "src/api/openapi-client/misc";
 import { getColourVariants } from "src/utils/colour";
 
 import { handle } from "@/api/client";
+import { useI18n } from "@/i18n/provider";
 import { useSettingsMutation } from "@/lib/settings/mutation";
 import { MotdAlertTypeSchema, Settings } from "@/lib/settings/settings";
 import { getIconURL } from "@/utils/icon";
@@ -48,6 +49,7 @@ export const FormSchema = z
 export type Form = z.infer<typeof FormSchema>;
 
 export function useBrandSettings({ settings }: Props) {
+  const { t } = useI18n();
   const { revalidate, updateSettings } = useSettingsMutation();
   const [motdContentInitialValue, setMotdContentInitialValue] = useState<
     string | undefined
@@ -122,8 +124,8 @@ export function useBrandSettings({ settings }: Props) {
       },
       {
         promiseToast: {
-          loading: "Saving settings...",
-          success: "Settings saved",
+          loading: t("Saving settings..."),
+          success: t("Settings saved"),
         },
         cleanup: async () => {
           await revalidate();

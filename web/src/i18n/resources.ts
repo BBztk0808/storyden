@@ -292,6 +292,212 @@ export const messages: Record<Locale, Dictionary> = {
     "Access keys allow you to authenticate API requests. They share the same permissions as your account.":
       "Access keys allow you to authenticate API requests. They share the same permissions as your account.",
     "API and MCP endpoints:": "API and MCP endpoints:",
+    "If you revoke the ability to use access keys from a role or member (by removing the":
+      "If you revoke the ability to use access keys from a role or member (by removing the",
+    "permission), this will not revoke their existing access keys.":
+      "permission), this will not revoke their existing access keys.",
+    "access keys": "access keys",
+    active: "active",
+    "Rate limits help protect your installation from spam, DDoS attacks and content scraping. This is achieved by limiting the number of":
+      "Rate limits help protect your installation from spam, DDoS attacks and content scraping. This is achieved by limiting the number of",
+    'An "Operation" is a request to Storyden\'s backend. Loading a screen such as Home, a Thread or a Library Page usually involves 10-30 request operations.':
+      'An "Operation" is a request to Storyden\'s backend. Loading a screen such as Home, a Thread or a Library Page usually involves 10-30 request operations.',
+    "in a time period.": "in a time period.",
+    "operations every": "operations every",
+    "requests per minute": "requests per minute",
+    "Rate limit": "Rate limit",
+    "request units": "request units",
+    "The amount of requests that a user can make within the rate_limit_period.":
+      "The amount of requests that a user can make within the rate_limit_period.",
+    "Rate limit period": "Rate limit period",
+    "The period of time in which the rate_limit is applied. This is a sliding window, so the rate_limit is applied to the last rate_limit_period of requests.":
+      "The period of time in which the rate_limit is applied. This is a sliding window, so the rate_limit is applied to the last rate_limit_period of requests.",
+    "Rate limit bucket size": "Rate limit bucket size",
+    day: "day",
+    days: "days",
+    hour: "hour",
+    hours: "hours",
+    minute: "minute",
+    minutes: "minutes",
+    second: "second",
+    seconds: "seconds",
+    "The granularity of rate limit counter buckets. Lower values use more memory but provide more accurate rate limiting. Higher values use less memory but may allow short bursts of traffic above the rate limit.":
+      "The granularity of rate limit counter buckets. Lower values use more memory but provide more accurate rate limiting. Higher values use less memory but may allow short bursts of traffic above the rate limit.",
+    "Guest rate limit cost multiplier": "Guest rate limit cost multiplier",
+    "The cost multiplier applied to unauthenticated guest visitors. For example, a value of 5 means each operation consumes 5 units from the guest's rate limit instead of 1, applying stricter limits to non-authenticated traffic.":
+      "The cost multiplier applied to unauthenticated guest visitors. For example, a value of 5 means each operation consumes 5 units from the guest's rate limit instead of 1, applying stricter limits to non-authenticated traffic.",
+    "Configure custom cost multipliers for specific API operations. Higher costs reduce the number of requests allowed within the rate limit period.":
+      "Configure custom cost multipliers for specific API operations. Higher costs reduce the number of requests allowed within the rate limit period.",
+    "Choose how Storyden resolves client addresses for request context. The default uses only RemoteAddr and does not trust forwarded headers. Header-based modes should only be used when your edge proxy/CDN strips or overwrites client-provided forwarding headers.":
+      "Choose how Storyden resolves client addresses for request context. The default uses only RemoteAddr and does not trust forwarded headers. Header-based modes should only be used when your edge proxy/CDN strips or overwrites client-provided forwarding headers.",
+    "Header to trust for the canonical client IP (for example CF-Connecting-IP, Fly-Client-IP, X-Real-IP). Do not use this mode unless this header is guaranteed to be injected by trusted infrastructure.":
+      "Header to trust for the canonical client IP (for example CF-Connecting-IP, Fly-Client-IP, X-Real-IP). Do not use this mode unless this header is guaranteed to be injected by trusted infrastructure.",
+    "Comma-separated CIDR ranges that are allowed to append XFF hops. Storyden will only trust XFF when RemoteAddr is in these ranges. Include every proxy hop in your chain to avoid collapsing users to a shared proxy IP.":
+      "Comma-separated CIDR ranges that are allowed to append XFF hops. Storyden will only trust XFF when RemoteAddr is in these ranges. Include every proxy hop in your chain to avoid collapsing users to a shared proxy IP.",
+    "Raw client address": "Raw client address",
+    "Browser/API headers": "Browser/API headers",
+    "SSR-forwarded headers": "SSR-forwarded headers",
+    "Server HTML Render": "Server HTML Render",
+    "Browser React Render": "Browser React Render",
+    "SSR test request failed with": "SSR test request failed with",
+    "This client IP test runs automatically and compares what Storyden sees from an SSR-origin call and a browser-origin call.":
+      "This client IP test runs automatically and compares what Storyden sees from an SSR-origin call and a browser-origin call.",
+    "These are sampled network headers seen by Storyden while running the client IP test.":
+      "These are sampled network headers seen by Storyden while running the client IP test.",
+    "Use them to configure trusted client IP settings.":
+      "Use them to configure trusted client IP settings.",
+    "Refresh Client IP Test": "Refresh Client IP Test",
+    "SSR and browser resolved IPs differ":
+      "SSR and browser resolved IPs differ",
+    "looks internal/private": "looks internal/private",
+    "look internal/private": "look internal/private",
+    and: "and",
+    'This is your current rate limit status. Click the "Test" button to consume one request.':
+      'This is your current rate limit status. Click the "Test" button to consume one request.',
+    "requests per minute until period reset.":
+      "requests per minute until period reset.",
+    "Test as Member": "Test as Member",
+    "Test as Guest": "Test as Guest",
+    "Can be performed": "Can be performed",
+    "times every": "times every",
+    "Username + Password": "Username + Password",
+    "The simplest authentication mode, members register and log in with their username and password. This mode does not require an email client to be configured and is suitable for smaller or invite-only communities, however it leaves the community vulnerable to spam and abuse as members cannot be verified by email. Members will not be able to reset their password by themselves and administrators will not have a contact method for members.":
+      "The simplest authentication mode, members register and log in with their username and password. This mode does not require an email client to be configured and is suitable for smaller or invite-only communities, however it leaves the community vulnerable to spam and abuse as members cannot be verified by email. Members will not be able to reset their password by themselves and administrators will not have a contact method for members.",
+    "Email authentication is the most flexible and common mode. Members register and log in with their email address and password. This mode requires an email client to be configured. Members can reset their password by themselves and administrators have a contact method for members.":
+      "Email authentication is the most flexible and common mode. Members register and log in with their email address and password. This mode requires an email client to be configured. Members can reset their password by themselves and administrators have a contact method for members.",
+    Phone: "Phone",
+    "This mode enforces members to register and log in with their just their phone number via one-time verification codes instead of passwords. It's recommended for communities that are mobile-first and requires an SMS client to be configured.":
+      "This mode enforces members to register and log in with their just their phone number via one-time verification codes instead of passwords. It's recommended for communities that are mobile-first and requires an SMS client to be configured.",
+    plugins: "plugins",
+    "Uploading...": "Uploading...",
+    "Select File": "Select File",
+    "Upload a Storyden Plugin (.sdx or .zip) file to extend Storyden's functionality.":
+      "Upload a Storyden Plugin (.sdx or .zip) file to extend Storyden's functionality.",
+    "Only upload plugins from trusted sources. Malicious plugins can compromise the security of your data and system.":
+      "Only upload plugins from trusted sources. Malicious plugins can compromise the security of your data and system.",
+    "Register an external plugin that connects to Storyden over authenticated RPC. Storyden will not manage this plugin process.":
+      "Register an external plugin that connects to Storyden over authenticated RPC. Storyden will not manage this plugin process.",
+    "External plugin tokens grant full access over RPC. Keep them secret and only run plugins from trusted sources.":
+      "External plugin tokens grant full access over RPC. Keep them secret and only run plugins from trusted sources.",
+    "Manifest (YAML or JSON)": "Manifest (YAML or JSON)",
+    "Adding...": "Adding...",
+    "Add External Plugin": "Add External Plugin",
+    "Drop your plugin file here or click to browse":
+      "Drop your plugin file here or click to browse",
+    "Plugin files only (.zip or .sdx), max 50MB":
+      "Plugin files only (.zip or .sdx), max 50MB",
+    "Invalid file.": "Invalid file.",
+    "Plugin file is too large. Maximum size is 50MB.":
+      "Plugin file is too large. Maximum size is 50MB.",
+    "File must be a .zip or .sdx archive.":
+      "File must be a .zip or .sdx archive.",
+    "File is too small.": "File is too small.",
+    "Only one plugin file can be uploaded at a time.":
+      "Only one plugin file can be uploaded at a time.",
+    "A file with this name has already been selected.":
+      "A file with this name has already been selected.",
+    "An unexpected error occurred while reading the file.":
+      "An unexpected error occurred while reading the file.",
+    Installed: "Installed",
+    "Confirm Delete": "Confirm Delete",
+    Error: "Error",
+    "No plugins have been installed yet.": "No plugins have been installed yet.",
+    "Learn more": "Learn more",
+    "about Storyden plugins.": "about Storyden plugins.",
+    Active: "Active",
+    Inactive: "Inactive",
+    Starting: "Starting",
+    Connecting: "Connecting",
+    Restarting: "Restarting",
+    Disable: "Disable",
+    Enable: "Enable",
+    Retry: "Retry",
+    Unknown: "Unknown",
+    Running: "Running",
+    Disabled: "Disabled",
+    Disabling: "Disabling",
+    Enabling: "Enabling",
+    Pending: "Pending",
+    "View logs": "View logs",
+    "No description provided.": "No description provided.",
+    "Plugin ID": "Plugin ID",
+    Author: "Author",
+    Version: "Version",
+    Mode: "Mode",
+    "This plugin does not consume any events.":
+      "This plugin does not consume any events.",
+    installed: "installed",
+    "This plugin has no configurable fields.":
+      "This plugin has no configurable fields.",
+    "Configure the plugin's settings below.":
+      "Configure the plugin's settings below.",
+    "Save Configuration": "Save Configuration",
+    "Defines plugin metadata and which features the plugin has access to.":
+      "Defines plugin metadata and which features the plugin has access to.",
+    "Updating the manifest will force the plugin to disconnect.":
+      "Updating the manifest will force the plugin to disconnect.",
+    "Save Manifest": "Save Manifest",
+    "Manifest payload must be an object": "Manifest payload must be an object",
+    "Failed to render manifest": "Failed to render manifest",
+    "Upload a replacement plugin package.":
+      "Upload a replacement plugin package.",
+    "This will restart the plugin with the new version.":
+      "This will restart the plugin with the new version.",
+    "The new version will be used when the plugin is enabled.":
+      "The new version will be used when the plugin is enabled.",
+    "The uploaded manifest must match this plugin's manifest ID. Only upload trusted plugin packages.":
+      "The uploaded manifest must match this plugin's manifest ID. Only upload trusted plugin packages.",
+    "Upload rejected": "Upload rejected",
+    "Confirm upgrade": "Confirm upgrade",
+    "Upgrade package": "Upgrade package",
+    Uploaded: "Uploaded",
+    "The plugin package was replaced successfully.":
+      "The plugin package was replaced successfully.",
+    "This plugin is an External plugin. This means Storyden does not manage its process lifecycle and cannot provide connection information. Use this token to connect the plugin to Storyden via RPC.":
+      "This plugin is an External plugin. This means Storyden does not manage its process lifecycle and cannot provide connection information. Use this token to connect the plugin to Storyden via RPC.",
+    "External plugins are responsible for handling their own restarting and reconnection.":
+      "External plugins are responsible for handling their own restarting and reconnection.",
+    "Plugin token": "Plugin token",
+    "Development environment variable": "Development environment variable",
+    "This will immediately invalidate the old token and force the plugin to disconnect if it's currently connected.":
+      "This will immediately invalidate the old token and force the plugin to disconnect if it's currently connected.",
+    "Confirm regenerate": "Confirm regenerate",
+    "Regenerate token": "Regenerate token",
+    "An unexpected error occurred with the image editor.":
+      "An unexpected error occurred with the image editor.",
+    "An unexpected error occurred with the image editor: unable to get crop coordinates.":
+      "An unexpected error occurred with the image editor: unable to get crop coordinates.",
+    "Banner saved!": "Banner saved!",
+    "File is too large.": "File is too large.",
+    "File must be of type": "File must be of type",
+    "Too many files.": "Too many files.",
+    "Upload banner": "Upload banner",
+    "Save banner": "Save banner",
+    "Upload icon": "Upload icon",
+    "Save icon": "Save icon",
+    "Unexpected problem: File is missing from uploader.":
+      "Unexpected problem: File is missing from uploader.",
+    "MOTD end date must be after start date.":
+      "MOTD end date must be after start date.",
+    "View all moderation actions and administrative events on this site.":
+      "View all moderation actions and administrative events on this site.",
+    "Filter by event type...": "Filter by event type...",
+    "Enacted by": "Enacted by",
+    Thread: "Thread",
+    Reply: "Reply",
+    Account: "Account",
+    Note: "Note",
+    "Purged Content": "Purged Content",
+    "Thread Deleted": "Thread Deleted",
+    "Reply Deleted": "Reply Deleted",
+    "Account Suspended": "Account Suspended",
+    "Account Unsuspended": "Account Unsuspended",
+    "Content Purged": "Content Purged",
+    "Moderation Note Created": "Moderation Note Created",
+    "Moderation Note Deleted": "Moderation Note Deleted",
+    "Account Warned": "Account Warned",
+    "Account Warning Updated": "Account Warning Updated",
+    "Account Warning Deleted": "Account Warning Deleted",
   },
   zh: {
     "lang.english": "English",
@@ -572,5 +778,203 @@ export const messages: Record<Locale, Dictionary> = {
     "Access keys allow you to authenticate API requests. They share the same permissions as your account.":
       "访问密钥可用于认证 API 请求，并与你的账户拥有相同权限。",
     "API and MCP endpoints:": "API 和 MCP 端点：",
+    "If you revoke the ability to use access keys from a role or member (by removing the":
+      "如果你从某个角色或成员移除访问密钥权限（即移除",
+    "permission), this will not revoke their existing access keys.":
+      "权限），这不会吊销他们已有的访问密钥。",
+    "access keys": "访问密钥",
+    active: "启用",
+    "Rate limits help protect your installation from spam, DDoS attacks and content scraping. This is achieved by limiting the number of":
+      "速率限制可保护你的站点免受垃圾内容、DDoS 攻击和内容抓取影响。它通过限制一段时间内的",
+    'An "Operation" is a request to Storyden\'s backend. Loading a screen such as Home, a Thread or a Library Page usually involves 10-30 request operations.':
+      "“操作”是一次发送到 Storyden 后端的请求。加载首页、主题或资料库页面通常会产生 10-30 次请求操作。",
+    "in a time period.": "数量来实现。",
+    "operations every": "次操作，每",
+    "requests per minute": "次请求/分钟",
+    "Rate limit": "速率限制",
+    "request units": "请求单位",
+    "The amount of requests that a user can make within the rate_limit_period.":
+      "用户在 rate_limit_period 内可发起的请求数量。",
+    "Rate limit period": "速率限制周期",
+    "The period of time in which the rate_limit is applied. This is a sliding window, so the rate_limit is applied to the last rate_limit_period of requests.":
+      "应用 rate_limit 的时间周期。这是一个滑动窗口，因此 rate_limit 会应用到最近 rate_limit_period 内的请求。",
+    "Rate limit bucket size": "速率限制桶大小",
+    day: "天",
+    days: "天",
+    hour: "小时",
+    hours: "小时",
+    minute: "分钟",
+    minutes: "分钟",
+    second: "秒",
+    seconds: "秒",
+    "The granularity of rate limit counter buckets. Lower values use more memory but provide more accurate rate limiting. Higher values use less memory but may allow short bursts of traffic above the rate limit.":
+      "速率限制计数桶的粒度。较小的值会占用更多内存，但限制更准确；较大的值占用更少内存，但可能允许短时间内超过限制的流量突增。",
+    "Guest rate limit cost multiplier": "访客速率限制成本倍数",
+    "The cost multiplier applied to unauthenticated guest visitors. For example, a value of 5 means each operation consumes 5 units from the guest's rate limit instead of 1, applying stricter limits to non-authenticated traffic.":
+      "应用到未认证访客的成本倍数。例如值为 5 表示每次操作会消耗访客速率限制中的 5 个单位，而不是 1 个单位，从而对未认证流量施加更严格的限制。",
+    "Configure custom cost multipliers for specific API operations. Higher costs reduce the number of requests allowed within the rate limit period.":
+      "为特定 API 操作配置自定义成本倍数。成本越高，在速率限制周期内允许的请求次数越少。",
+    "Choose how Storyden resolves client addresses for request context. The default uses only RemoteAddr and does not trust forwarded headers. Header-based modes should only be used when your edge proxy/CDN strips or overwrites client-provided forwarding headers.":
+      "选择 Storyden 如何为请求上下文解析客户端地址。默认只使用 RemoteAddr，并且不信任转发请求头。只有当你的边缘代理或 CDN 会移除或覆盖客户端提供的转发请求头时，才应使用基于请求头的模式。",
+    "Header to trust for the canonical client IP (for example CF-Connecting-IP, Fly-Client-IP, X-Real-IP). Do not use this mode unless this header is guaranteed to be injected by trusted infrastructure.":
+      "用于确定规范客户端 IP 的可信请求头（例如 CF-Connecting-IP、Fly-Client-IP、X-Real-IP）。除非能保证该请求头由可信基础设施注入，否则不要使用此模式。",
+    "Comma-separated CIDR ranges that are allowed to append XFF hops. Storyden will only trust XFF when RemoteAddr is in these ranges. Include every proxy hop in your chain to avoid collapsing users to a shared proxy IP.":
+      "允许追加 XFF 跳点的 CIDR 范围，多个范围用英文逗号分隔。只有 RemoteAddr 位于这些范围内时，Storyden 才会信任 XFF。请包含链路中的每个代理跳点，避免所有用户都被归并到同一个代理 IP。",
+    "Raw client address": "原始客户端地址",
+    "Browser/API headers": "浏览器/API 请求头",
+    "SSR-forwarded headers": "SSR 转发请求头",
+    "Server HTML Render": "服务器 HTML 渲染",
+    "Browser React Render": "浏览器 React 渲染",
+    "SSR test request failed with": "SSR 测试请求失败，状态码",
+    "This client IP test runs automatically and compares what Storyden sees from an SSR-origin call and a browser-origin call.":
+      "客户端 IP 测试会自动运行，并比较 Storyden 从 SSR 发起调用与浏览器发起调用中看到的结果。",
+    "These are sampled network headers seen by Storyden while running the client IP test.":
+      "这些是在运行客户端 IP 测试时 Storyden 看到的网络请求头样本。",
+    "Use them to configure trusted client IP settings.":
+      "可参考这些样本配置可信客户端 IP 设置。",
+    "Refresh Client IP Test": "刷新客户端 IP 测试",
+    "SSR and browser resolved IPs differ": "SSR 与浏览器解析出的 IP 不一致",
+    "looks internal/private": "看起来是内网/私有地址",
+    "look internal/private": "看起来是内网/私有地址",
+    and: "和",
+    'This is your current rate limit status. Click the "Test" button to consume one request.':
+      "这是当前速率限制状态。点击“测试”按钮会消耗一次请求。",
+    "requests per minute until period reset.": "次请求/分钟，直到周期重置。",
+    "Test as Member": "按成员身份测试",
+    "Test as Guest": "按访客身份测试",
+    "Can be performed": "可执行",
+    "times every": "次，每",
+    "Username + Password": "用户名 + 密码",
+    "The simplest authentication mode, members register and log in with their username and password. This mode does not require an email client to be configured and is suitable for smaller or invite-only communities, however it leaves the community vulnerable to spam and abuse as members cannot be verified by email. Members will not be able to reset their password by themselves and administrators will not have a contact method for members.":
+      "最简单的认证模式，成员使用用户名和密码注册与登录。此模式不需要配置邮件客户端，适合较小或邀请制社区；但由于无法通过邮箱验证成员，社区更容易受到垃圾注册和滥用影响。成员无法自行重置密码，管理员也没有联系成员的方式。",
+    "Email authentication is the most flexible and common mode. Members register and log in with their email address and password. This mode requires an email client to be configured. Members can reset their password by themselves and administrators have a contact method for members.":
+      "邮箱认证是最灵活、最常见的模式。成员使用邮箱地址和密码注册与登录。此模式需要配置邮件客户端。成员可以自行重置密码，管理员也能通过邮箱联系成员。",
+    Phone: "手机号",
+    "This mode enforces members to register and log in with their just their phone number via one-time verification codes instead of passwords. It's recommended for communities that are mobile-first and requires an SMS client to be configured.":
+      "此模式要求成员仅使用手机号通过一次性验证码注册和登录，而不是使用密码。它适合移动优先的社区，并且需要配置短信客户端。",
+    plugins: "插件",
+    "Uploading...": "正在上传...",
+    "Select File": "选择文件",
+    "Upload a Storyden Plugin (.sdx or .zip) file to extend Storyden's functionality.":
+      "上传 Storyden 插件文件（.sdx 或 .zip）以扩展 Storyden 功能。",
+    "Only upload plugins from trusted sources. Malicious plugins can compromise the security of your data and system.":
+      "只上传来自可信来源的插件。恶意插件可能危及你的数据和系统安全。",
+    "Register an external plugin that connects to Storyden over authenticated RPC. Storyden will not manage this plugin process.":
+      "注册一个通过认证 RPC 连接到 Storyden 的外部插件。Storyden 不会管理该插件进程。",
+    "External plugin tokens grant full access over RPC. Keep them secret and only run plugins from trusted sources.":
+      "外部插件令牌会授予完整 RPC 访问权限。请妥善保密，并且只运行来自可信来源的插件。",
+    "Manifest (YAML or JSON)": "清单（YAML 或 JSON）",
+    "Adding...": "正在添加...",
+    "Add External Plugin": "添加外部插件",
+    "Drop your plugin file here or click to browse":
+      "将插件文件拖到这里，或点击浏览",
+    "Plugin files only (.zip or .sdx), max 50MB":
+      "仅支持插件文件（.zip 或 .sdx），最大 50MB",
+    "Invalid file.": "文件无效。",
+    "Plugin file is too large. Maximum size is 50MB.":
+      "插件文件过大，最大 50MB。",
+    "File must be a .zip or .sdx archive.": "文件必须是 .zip 或 .sdx 压缩包。",
+    "File is too small.": "文件过小。",
+    "Only one plugin file can be uploaded at a time.":
+      "每次只能上传一个插件文件。",
+    "A file with this name has already been selected.":
+      "已选择同名文件。",
+    "An unexpected error occurred while reading the file.":
+      "读取文件时发生意外错误。",
+    Installed: "安装时间",
+    "Confirm Delete": "确认删除",
+    Error: "错误",
+    "No plugins have been installed yet.": "还没有安装插件。",
+    "Learn more": "了解更多",
+    "about Storyden plugins.": "关于 Storyden 插件。",
+    Active: "已启用",
+    Inactive: "未启用",
+    Starting: "启动中",
+    Connecting: "连接中",
+    Restarting: "重启中",
+    Disable: "停用",
+    Enable: "启用",
+    Retry: "重试",
+    Unknown: "未知",
+    Running: "运行中",
+    Disabled: "已停用",
+    Disabling: "正在停用",
+    Enabling: "正在启用",
+    Pending: "等待中",
+    "View logs": "查看日志",
+    "No description provided.": "未提供描述。",
+    "Plugin ID": "插件 ID",
+    Author: "作者",
+    Version: "版本",
+    Mode: "模式",
+    "This plugin does not consume any events.": "此插件不消费任何事件。",
+    installed: "安装时间",
+    "This plugin has no configurable fields.": "此插件没有可配置字段。",
+    "Configure the plugin's settings below.": "在下方配置插件设置。",
+    "Save Configuration": "保存配置",
+    "Defines plugin metadata and which features the plugin has access to.":
+      "定义插件元数据以及插件可访问的功能。",
+    "Updating the manifest will force the plugin to disconnect.":
+      "更新清单会强制插件断开连接。",
+    "Save Manifest": "保存清单",
+    "Manifest payload must be an object": "清单内容必须是对象。",
+    "Failed to render manifest": "清单渲染失败",
+    "Upload a replacement plugin package.": "上传替换插件包。",
+    "This will restart the plugin with the new version.":
+      "这会使用新版本重启插件。",
+    "The new version will be used when the plugin is enabled.":
+      "插件启用时会使用新版本。",
+    "The uploaded manifest must match this plugin's manifest ID. Only upload trusted plugin packages.":
+      "上传包中的清单必须与此插件的清单 ID 匹配。请只上传可信插件包。",
+    "Upload rejected": "上传被拒绝",
+    "Confirm upgrade": "确认升级",
+    "Upgrade package": "升级包",
+    Uploaded: "已上传",
+    "The plugin package was replaced successfully.": "插件包已成功替换。",
+    "This plugin is an External plugin. This means Storyden does not manage its process lifecycle and cannot provide connection information. Use this token to connect the plugin to Storyden via RPC.":
+      "这是一个外部插件。Storyden 不会管理它的进程生命周期，也无法提供连接信息。请使用此令牌通过 RPC 将插件连接到 Storyden。",
+    "External plugins are responsible for handling their own restarting and reconnection.":
+      "外部插件需要自行处理重启和重新连接。",
+    "Plugin token": "插件令牌",
+    "Development environment variable": "开发环境变量",
+    "This will immediately invalidate the old token and force the plugin to disconnect if it's currently connected.":
+      "这会立即使旧令牌失效，并在插件当前已连接时强制其断开连接。",
+    "Confirm regenerate": "确认重新生成",
+    "Regenerate token": "重新生成令牌",
+    "An unexpected error occurred with the image editor.":
+      "图片编辑器发生意外错误。",
+    "An unexpected error occurred with the image editor: unable to get crop coordinates.":
+      "图片编辑器发生意外错误：无法获取裁剪坐标。",
+    "Banner saved!": "横幅已保存！",
+    "File is too large.": "文件过大。",
+    "File must be of type": "文件类型必须为",
+    "Too many files.": "文件过多。",
+    "Upload banner": "上传横幅",
+    "Save banner": "保存横幅",
+    "Upload icon": "上传图标",
+    "Save icon": "保存图标",
+    "Unexpected problem: File is missing from uploader.":
+      "发生意外问题：上传器中缺少文件。",
+    "MOTD end date must be after start date.":
+      "每日消息结束时间必须晚于开始时间。",
+    "View all moderation actions and administrative events on this site.":
+      "查看本站全部审核操作和管理事件。",
+    "Filter by event type...": "按事件类型筛选...",
+    "Enacted by": "执行者",
+    Thread: "主题",
+    Reply: "回复",
+    Account: "账户",
+    Note: "备注",
+    "Purged Content": "已清除内容",
+    "Thread Deleted": "主题已删除",
+    "Reply Deleted": "回复已删除",
+    "Account Suspended": "账户已封禁",
+    "Account Unsuspended": "账户已解封",
+    "Content Purged": "内容已清除",
+    "Moderation Note Created": "审核备注已创建",
+    "Moderation Note Deleted": "审核备注已删除",
+    "Account Warned": "账户已警告",
+    "Account Warning Updated": "账户警告已更新",
+    "Account Warning Deleted": "账户警告已删除",
   },
 };

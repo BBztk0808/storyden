@@ -12,6 +12,7 @@ import { Heading } from "@/components/ui/heading";
 import { IconButton } from "@/components/ui/icon-button";
 import { CancelIcon } from "@/components/ui/icons/Cancel";
 import { Input } from "@/components/ui/input";
+import { useI18n } from "@/i18n/provider";
 import {
   CardBox,
   Flex,
@@ -25,6 +26,7 @@ import { lstack } from "@/styled-system/patterns";
 import { Props, useModerationSettings } from "./useModerationSettings";
 
 export function ModerationSettingsForm(props: Props) {
+  const { t } = useI18n();
   const { control, formState, onSubmit } = useModerationSettings(props);
 
   return (
@@ -37,9 +39,9 @@ export function ModerationSettingsForm(props: Props) {
     >
       <CardBox className={lstack()}>
         <WStack>
-          <Heading size="md">Moderation settings</Heading>
+          <Heading size="md">{t("Moderation settings")}</Heading>
           <Button type="submit" loading={formState.isSubmitting}>
-            Save
+            {t("Save")}
           </Button>
         </WStack>
 
@@ -51,7 +53,7 @@ export function ModerationSettingsForm(props: Props) {
           gap="2"
         >
           <FormControl>
-            <FormLabel>Thread content maximum length</FormLabel>
+            <FormLabel>{t("Thread content maximum length")}</FormLabel>
             <NumberInputField
               control={control}
               name="threadBodyMaxSize"
@@ -61,13 +63,14 @@ export function ModerationSettingsForm(props: Props) {
               step={100}
             />
             <FormHelperText>
-              The maximum amount of characters allowed in the body content of a
-              thread.
+              {t(
+                "The maximum amount of characters allowed in the body content of a thread.",
+              )}
             </FormHelperText>
           </FormControl>
 
           <FormControl>
-            <FormLabel>Reply content maximum length</FormLabel>
+            <FormLabel>{t("Reply content maximum length")}</FormLabel>
             <NumberInputField
               control={control}
               name="replyBodyMaxSize"
@@ -77,8 +80,9 @@ export function ModerationSettingsForm(props: Props) {
               step={100}
             />
             <FormHelperText>
-              The maximum amount of characters allowed in the body content of a
-              reply.
+              {t(
+                "The maximum amount of characters allowed in the body content of a reply.",
+              )}
             </FormHelperText>
           </FormControl>
         </Flex>
@@ -91,7 +95,7 @@ export function ModerationSettingsForm(props: Props) {
           gap="2"
         >
           <FormControl>
-            <FormLabel>Word report list</FormLabel>
+            <FormLabel>{t("Word report list")}</FormLabel>
 
             <Controller
               control={control}
@@ -146,7 +150,7 @@ export function ModerationSettingsForm(props: Props) {
                         size="sm"
                         onClick={handleNewWordSubmit}
                       >
-                        Add
+                        {t("Add")}
                       </Button>
                     </HStack>
                   </LStack>
@@ -155,12 +159,13 @@ export function ModerationSettingsForm(props: Props) {
             />
 
             <FormHelperText>
-              Words and phrases that will automatically report and hide posts
-              that contain them.
+              {t(
+                "Words and phrases that will automatically report and hide posts that contain them.",
+              )}
             </FormHelperText>
           </FormControl>
           <FormControl>
-            <FormLabel>Word block list</FormLabel>
+            <FormLabel>{t("Word block list")}</FormLabel>
 
             <Controller
               control={control}
@@ -215,7 +220,7 @@ export function ModerationSettingsForm(props: Props) {
                         size="sm"
                         onClick={handleNewWordSubmit}
                       >
-                        Add
+                        {t("Add")}
                       </Button>
                     </HStack>
                   </LStack>
@@ -224,8 +229,9 @@ export function ModerationSettingsForm(props: Props) {
             />
 
             <FormHelperText>
-              Words and phrases that will instantly reject posts without
-              creating a report.
+              {t(
+                "Words and phrases that will instantly reject posts without creating a report.",
+              )}
             </FormHelperText>
           </FormControl>
         </Flex>
