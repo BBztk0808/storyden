@@ -9,13 +9,20 @@ import {
   useState,
 } from "react";
 
-import { I18N_COOKIE_NAME, Locale, defaultLocale, isLocale, normalizeLocale } from "./config";
+import {
+  I18N_COOKIE_NAME,
+  Locale,
+  defaultLocale,
+  isLocale,
+  normalizeLocale,
+} from "./config";
+import { Translate, TranslationParams, interpolate } from "./format";
 import { messages } from "./resources";
 
 type I18nValue = {
   locale: Locale;
   setLocale: (next: Locale) => void;
-  t: (key: string) => string;
+  t: Translate;
 };
 
 const I18nContext = createContext<I18nValue | null>(null);
@@ -25,7 +32,9 @@ type Props = PropsWithChildren<{
 }>;
 
 export function I18nProvider({ initialLocale, children }: Props) {
-  const [locale, setLocaleState] = useState<Locale>(normalizeLocale(initialLocale));
+  const [locale, setLocaleState] = useState<Locale>(
+    normalizeLocale(initialLocale),
+  );
 
   useEffect(() => {
     const normalized = normalizeLocale(initialLocale);
@@ -54,9 +63,10 @@ export function I18nProvider({ initialLocale, children }: Props) {
   }, [locale]);
 
   const value = useMemo<I18nValue>(() => {
-    const t = (key: string) => {
+    const t: Translate = (key, params) => {
       const dictionary = messages[locale] ?? messages[defaultLocale];
-      return dictionary[key] ?? messages[defaultLocale][key] ?? key;
+      const message = dictionary[key] ?? messages[defaultLocale][key] ?? key;
+      return interpolate(message, params);
     };
 
     return {
@@ -77,7 +87,8 @@ export function useI18n() {
     return {
       locale: defaultLocale,
       setLocale: () => undefined,
-      t: (key: string) => messages[defaultLocale][key] ?? key,
+      t: (key: string, params?: TranslationParams) =>
+        interpolate(messages[defaultLocale][key] ?? key, params),
     };
   }
 

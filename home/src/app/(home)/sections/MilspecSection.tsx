@@ -92,7 +92,7 @@ export function MilspecSection({ stats, locale = "en" }: Props) {
 
           <styled.tr>
             <td colSpan={6}>
-              <StorydenComputer />
+              <StorydenComputer locale={locale} />
             </td>
           </styled.tr>
 

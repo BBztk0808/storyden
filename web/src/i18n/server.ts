@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 
 import { I18N_COOKIE_NAME, defaultLocale, normalizeLocale } from "./config";
+import { TranslationParams, interpolate } from "./format";
 import { messages } from "./resources";
 
 export async function getServerLocale() {
@@ -8,7 +9,8 @@ export async function getServerLocale() {
   return normalizeLocale(cookieStore.get(I18N_COOKIE_NAME)?.value);
 }
 
-export async function tServer(key: string) {
+export async function tServer(key: string, params?: TranslationParams) {
   const locale = await getServerLocale();
-  return messages[locale][key] ?? messages[defaultLocale][key] ?? key;
+  const message = messages[locale][key] ?? messages[defaultLocale][key] ?? key;
+  return interpolate(message, params);
 }

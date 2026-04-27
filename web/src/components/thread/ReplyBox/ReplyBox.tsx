@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { IconButton } from "@/components/ui/icon-button";
 import { CloseIcon } from "@/components/ui/icons/Close";
 import { DiscussionIcon } from "@/components/ui/icons/Discussion";
+import { useI18n } from "@/i18n/provider";
 import { css } from "@/styled-system/css";
 import { HStack, LStack, VStack, WStack, styled } from "@/styled-system/jsx";
 import { CardBox } from "@/styled-system/patterns";
@@ -20,6 +21,7 @@ import { useReplyContext } from "../ReplyContext";
 import { Form, Props, useReplyBox } from "./useReplyBox";
 
 export function ReplyBox(props: Props) {
+  const { t } = useI18n();
   const { replyTo, clearReplyTo } = useReplyContext();
   const {
     isLoggedIn,
@@ -44,7 +46,7 @@ export function ReplyBox(props: Props) {
         {postedReply && (
           <LStack h="full" justifyContent="center">
             <styled.p fontSize="sm" color="fg.muted">
-              Your reply has been posted on{" "}
+              {t("Your reply has been posted on")}{" "}
               <Link
                 className={css({
                   color: "fg.emphasized",
@@ -53,7 +55,7 @@ export function ReplyBox(props: Props) {
                 href={postedReply.permalink}
                 onClick={handlers.handleReplyNavigation}
               >
-                page {postedReply.pageNumber}
+                {t("page {{page}}", { page: postedReply.pageNumber })}
               </Link>
               .
             </styled.p>
@@ -72,7 +74,7 @@ export function ReplyBox(props: Props) {
         {replyTo && (
           <WStack py="1" px="2" borderRadius="md" bgColor="bg.muted">
             <HStack gap="1" fontSize="sm" color="fg.muted">
-              <styled.span>Replying&nbsp;to</styled.span>
+              <styled.span>{t("Replying to")}</styled.span>
               <MemberIdent
                 profile={replyTo.reply.author}
                 name="handle"
@@ -87,7 +89,7 @@ export function ReplyBox(props: Props) {
               type="button"
               size="xs"
               variant="ghost"
-              aria-label="Clear reply-to"
+              aria-label={t("Clear reply-to")}
               onClick={clearReplyTo}
             >
               <CloseIcon />
@@ -97,7 +99,7 @@ export function ReplyBox(props: Props) {
 
         <HStack justifyContent="space-between">
           <HStack gap="1">
-            <styled.span textWrap="nowrap">Reply to</styled.span>
+            <styled.span textWrap="nowrap">{t("Reply to")}</styled.span>
             <MemberIdent
               profile={props.thread.author}
               name="handle"
@@ -106,7 +108,7 @@ export function ReplyBox(props: Props) {
           </HStack>
 
           <Button type="submit" size="xs" disabled={isLoading || isEmpty}>
-            Post
+            {t("Post")}
           </Button>
         </HStack>
 
@@ -149,6 +151,8 @@ function ReplyBodyInput({
 }
 
 function LoginToReply() {
+  const { t } = useI18n();
+
   return (
     <HStack
       w="full"
@@ -160,7 +164,9 @@ function LoginToReply() {
       <DiscussionIcon width="4" />
 
       <p>
-        Please <Anchor href="/register">sign up or log in</Anchor> to reply
+        {t("Please")}{" "}
+        <Anchor href="/register">{t("sign up or log in")}</Anchor>{" "}
+        {t("to reply")}
       </p>
     </HStack>
   );
