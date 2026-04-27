@@ -15,6 +15,7 @@ import {
 } from "@/api/openapi-schema";
 import { useSession } from "@/auth";
 import { useConfirmation } from "@/components/site/useConfirmation";
+import { useI18n } from "@/i18n/provider";
 import { useBeacon } from "@/lib/beacon/useBeacon";
 import { useReportContext } from "@/lib/report/useReportContext";
 import type { SignatureConfig } from "@/lib/settings/settings";
@@ -43,6 +44,7 @@ export function useThreadScreen({
   slug,
   thread,
 }: Props) {
+  const { t } = useI18n();
   const router = useRouter();
   const session = useSession(initialSession);
   const { reportId, resolveReport } = useReportContext();
@@ -139,8 +141,8 @@ export function useThreadScreen({
       },
       {
         promiseToast: {
-          loading: "Saving...",
-          success: "Saved!",
+          loading: t("Saving..."),
+          success: t("Saved!"),
         },
         cleanup: async () => {
           await mutate();
@@ -157,8 +159,8 @@ export function useThreadScreen({
       },
       {
         promiseToast: {
-          loading: "Accepting...",
-          success: "Thread accepted!",
+          loading: t("Accepting..."),
+          success: t("Thread accepted!"),
         },
         cleanup: async () => {
           await revalidate();
@@ -175,7 +177,7 @@ export function useThreadScreen({
     await handle(
       async () => {
         await withUndo({
-          message: "Thread deleted",
+          message: t("Thread deleted"),
           duration: 5000,
           toastId: `thread-${thread.id}`,
           action: async () => {

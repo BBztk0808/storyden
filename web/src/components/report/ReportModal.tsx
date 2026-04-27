@@ -14,6 +14,7 @@ import { FormControl } from "@/components/ui/form/FormControl";
 import { FormErrorText } from "@/components/ui/form/FormErrorText";
 import { FormHelperText } from "@/components/ui/form/FormHelperText";
 import { FormLabel } from "@/components/ui/form/FormLabel";
+import { useI18n } from "@/i18n/provider";
 import { WStack, styled } from "@/styled-system/jsx";
 import { lstack } from "@/styled-system/patterns";
 
@@ -46,6 +47,7 @@ export function ReportModal({
   loadingMessage = "Sending report...",
   ...disclosure
 }: ReportModalProps) {
+  const { t } = useI18n();
   const form = useForm<Form>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -103,15 +105,17 @@ export function ReportModal({
         )}
 
         <FormControl>
-          <FormLabel>Additional details</FormLabel>
+          <FormLabel>{t("Additional details")}</FormLabel>
           <Input
             {...form.register("comment")}
-            placeholder="Optional context for moderators"
+            placeholder={t("Optional context for moderators")}
             maxLength={1000}
             resize="vertical"
           />
           <FormHelperText>
-            Optional additional context to help moderators resolve this matter.
+            {t(
+              "Optional additional context to help moderators resolve this matter.",
+            )}
           </FormHelperText>
           <FormErrorText>
             {form.formState.errors.comment?.message}
@@ -120,7 +124,7 @@ export function ReportModal({
 
         <WStack gap="2">
           <Button type="button" variant="outline" onClick={handleCancel}>
-            Cancel
+            {t("Cancel")}
           </Button>
           <Button
             type="submit"

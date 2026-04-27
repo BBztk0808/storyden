@@ -7,6 +7,7 @@ import { iconUpload } from "src/api/openapi-client/misc";
 import { getColourVariants } from "src/utils/colour";
 
 import { handle } from "@/api/client";
+import { Translate } from "@/i18n/format";
 import { useI18n } from "@/i18n/provider";
 import { useSettingsMutation } from "@/lib/settings/mutation";
 import { MotdAlertTypeSchema, Settings } from "@/lib/settings/settings";
@@ -16,18 +17,19 @@ export type Props = {
   settings: Settings;
 };
 
-export const FormSchema = z
-  .object({
-    title: z.string(),
-    description: z.string(),
-    content: z.string().optional(),
-    accentColour: z.string(),
-    motdContent: z.string().optional(),
-    motdStartAt: z.string().optional(),
-    motdEndAt: z.string().optional(),
-    motdType: MotdAlertTypeSchema.optional(),
-  })
-  .refine(
+export const FormSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  content: z.string().optional(),
+  accentColour: z.string(),
+  motdContent: z.string().optional(),
+  motdStartAt: z.string().optional(),
+  motdEndAt: z.string().optional(),
+  motdType: MotdAlertTypeSchema.optional(),
+});
+
+function getFormSchema(t: Translate) {
+  return FormSchema.refine(
     (data) => {
       if (!data.motdStartAt || !data.motdEndAt) {
         return true;
@@ -42,10 +44,11 @@ export const FormSchema = z
       return start <= end;
     },
     {
-      message: "MOTD end date must be after start date.",
+      message: t("MOTD end date must be after start date."),
       path: ["motdEndAt"],
     },
   );
+}
 export type Form = z.infer<typeof FormSchema>;
 
 export function useBrandSettings({ settings }: Props) {
@@ -56,7 +59,7 @@ export function useBrandSettings({ settings }: Props) {
   >(settings.motd?.content);
   const [motdContentResetKey, setMotdContentResetKey] = useState<string>();
   const form = useForm<Form>({
-    resolver: zodResolver(FormSchema),
+    resolver: zodResolver(getFormSchema(t)),
     defaultValues: {
       title: settings.title,
       description: settings.description,

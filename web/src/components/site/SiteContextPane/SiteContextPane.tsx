@@ -7,6 +7,7 @@ import { FormControl } from "@/components/ui/FormControl";
 import { FormErrorText } from "@/components/ui/FormErrorText";
 import { Heading } from "@/components/ui/heading";
 import { Input } from "@/components/ui/input";
+import { useI18n } from "@/i18n/provider";
 import { css } from "@/styled-system/css";
 import { Divider, HStack, LStack, WStack } from "@/styled-system/jsx";
 import { lstack } from "@/styled-system/patterns";
@@ -30,6 +31,7 @@ const SiteContextPaneContentField = dynamic(
 
 export function SiteContextPane(props: Props) {
   const { ready, error, form, data, handlers } = useSiteContextPane(props);
+  const { t } = useI18n();
   if (!ready) {
     return <Unready error={error} />;
   }
@@ -46,7 +48,7 @@ export function SiteContextPane(props: Props) {
       <WStack alignItems="start">
         {isEditingSettings ? (
           <FormControl>
-            <Input placeholder="Site title..." {...form.register("title")} />
+            <Input placeholder={t("Site title...")} {...form.register("title")} />
             <FormErrorText>
               {form.formState.errors.title?.message}
             </FormErrorText>
@@ -66,7 +68,7 @@ export function SiteContextPane(props: Props) {
           height={32}
           title={
             isEditingSettings
-              ? "You can change your community's icon in the admin settings page."
+              ? t("You can change your community's icon in the admin settings page.")
               : undefined
           }
         />
@@ -76,7 +78,7 @@ export function SiteContextPane(props: Props) {
         <FormControl>
           <Input
             size="xs"
-            placeholder="Site description..."
+            placeholder={t("Site description...")}
             {...form.register("description")}
           />
           <FormErrorText>
@@ -92,7 +94,7 @@ export function SiteContextPane(props: Props) {
           <SiteContextPaneContentField
             control={form.control}
             initialValue={settings.content}
-            placeholder="About your community..."
+            placeholder={t("About your community...")}
           />
           <FormErrorText>
             {form.formState.errors.content?.message}
@@ -115,10 +117,10 @@ export function SiteContextPane(props: Props) {
 
           <WStack>
             {isEditingSettings ? (
-              <SaveAction type="submit">Save</SaveAction>
+              <SaveAction type="submit">{t("Save")}</SaveAction>
             ) : (
               <EditAction onClick={handlers.handleEnableEditing}>
-                Edit
+                {t("Edit")}
               </EditAction>
             )}
             {isAdmin && <AdminAnchor />}

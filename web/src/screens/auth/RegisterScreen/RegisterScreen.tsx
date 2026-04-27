@@ -1,5 +1,6 @@
 import { AuthMode } from "@/api/openapi-schema";
 import { authProviderList } from "@/api/openapi-server/auth";
+import { tServer } from "@/i18n/server";
 import { VStack } from "@/styled-system/jsx";
 
 import { RegisterEmailForm } from "./RegisterEmail/RegisterEmailForm";
@@ -26,7 +27,7 @@ export async function RegisterScreen() {
 
       return (
         <VStack>
-          <p>This instance is private.</p>
+          <p>{await tServer("This instance is private.")}</p>
         </VStack>
       );
   }
