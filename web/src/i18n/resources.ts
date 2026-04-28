@@ -29,7 +29,9 @@ export const messages: Record<Locale, Dictionary> = {
     Drafts: "Drafts",
     Reports: "Reports",
     Links: "Links",
+    Collection: "Collection",
     Collections: "Collections",
+    Event: "Event",
     Admin: "Admin",
     "Main navigation menu": "Main navigation menu",
     "Forgot password": "Forgot password",
@@ -900,6 +902,92 @@ export const messages: Record<Locale, Dictionary> = {
       "Roles are ordered by priority, and the highest priority role with coloured name enabled will determine the colour of the member's name.",
     "Name Preview": "Name Preview",
     Permissions: "Permissions",
+    "Edit role: {{name}}": "Edit role: {{name}}",
+    "Edit role": "Edit role",
+    "You cannot edit this role": "You cannot edit this role",
+    "Create role": "Create role",
+    "Creating role...": "Creating role...",
+    "New role created": "New role created",
+    "Create post": "Create post",
+    "Members can create posts.": "Members can create posts.",
+    "Read published threads": "Read published threads",
+    "Members can read published threads.":
+      "Members can read published threads.",
+    "Create reactions": "Create reactions",
+    "React to posts.": "React to posts.",
+    "Manage posts": "Manage posts",
+    "Manage posts, such as delete, pin and move.":
+      "Manage posts, such as delete, pin and move.",
+    "Manage categories": "Manage categories",
+    "Create and edit categories.": "Create and edit categories.",
+    "Create invitations": "Create invitations",
+    "Create invitations for new members.":
+      "Create invitations for new members.",
+    "Read published library pages": "Read published library pages",
+    "Access published items in the library.":
+      "Access published items in the library.",
+    "Manage library": "Manage library",
+    "Manage items in the library, such as publish new pages, accept or reject submissions and edit pages.":
+      "Manage items in the library, such as publish new pages, accept or reject submissions and edit pages.",
+    "Submit to library": "Submit to library",
+    "Submit new pages to the library.": "Submit new pages to the library.",
+    "Upload assets": "Upload assets",
+    "Upload images and media to posts, pages and any other areas that accept media.":
+      "Upload images and media to posts, pages and any other areas that accept media.",
+    "Manage events": "Manage events",
+    "Create, edit and remove events as well as change event hosts.":
+      "Create, edit and remove events as well as change event hosts.",
+    "Access member list": "Access member list",
+    "Access the full list of registered members.":
+      "Access the full list of registered members.",
+    "Access profiles": "Access profiles",
+    "Access any registered member's profiles.":
+      "Access any registered member's profiles.",
+    "Create collections": "Create collections",
+    "Create and manage their own collections.":
+      "Create and manage their own collections.",
+    "Access published collections": "Access published collections",
+    "Access the full list of published collections from other members.":
+      "Access the full list of published collections from other members.",
+    "Read any collection": "Read any collection",
+    "Read any published collection from any other member.":
+      "Read any published collection from any other member.",
+    "Manage collections": "Manage collections",
+    "Delete, rename or move collections owned by other members.":
+      "Delete, rename or move collections owned by other members.",
+    "Submit to collections": "Submit to collections",
+    "Submit items for review to other members' collections.":
+      "Submit items for review to other members' collections.",
+    "Use personal access keys": "Use personal access keys",
+    "Use personal access keys to authenticate with the Storyden API and MCP server.":
+      "Use personal access keys to authenticate with the Storyden API and MCP server.",
+    "Manage settings": "Manage settings",
+    "Manage the administrative settings for the Storyden installation.":
+      "Manage the administrative settings for the Storyden installation.",
+    "Manage warnings": "Manage warnings",
+    "Issue member warnings and review their warning history.":
+      "Issue member warnings and review their warning history.",
+    "Manage suspensions": "Manage suspensions",
+    "Suspend or reinstate members from the community.":
+      "Suspend or reinstate members from the community.",
+    "Manage roles": "Manage roles",
+    "Create, edit and delete roles as well as assign and remove roles of other members.":
+      "Create, edit and delete roles as well as assign and remove roles of other members.",
+    "Manage reports": "Manage reports",
+    "View and manage all submitted reports from community members.":
+      "View and manage all submitted reports from community members.",
+    "View accounts": "View accounts",
+    "View detailed account information including email addresses and verification status for non-administrator accounts.":
+      "View detailed account information including email addresses and verification status for non-administrator accounts.",
+    "View moderation notes": "View moderation notes",
+    "Read internal staff-only moderation notes attached to member accounts.":
+      "Read internal staff-only moderation notes attached to member accounts.",
+    "Manage moderation notes": "Manage moderation notes",
+    "Create and delete internal staff-only moderation notes attached to member accounts.":
+      "Create and delete internal staff-only moderation notes attached to member accounts.",
+    Administrator: "Administrator",
+    "Full administrative access. Use with caution!":
+      "Full administrative access. Use with caution!",
     "You cannot change the permissions granted to the default Admin role. This role implicitly holds all permissions.":
       "You cannot change the permissions granted to the default Admin role. This role implicitly holds all permissions.",
     "You must be logged in to use the knowledgebase Ask tool.":
@@ -1168,7 +1256,9 @@ export const messages: Record<Locale, Dictionary> = {
     Drafts: "草稿",
     Reports: "举报",
     Links: "链接",
+    Collection: "收藏集",
     Collections: "集合",
+    Event: "事件",
     Admin: "管理",
     "Main navigation menu": "主导航菜单",
     "Forgot password": "忘记密码",
@@ -2006,6 +2096,90 @@ export const messages: Record<Locale, Dictionary> = {
       "角色按优先级排序，启用彩色名称且优先级最高的角色会决定成员名称的颜色。",
     "Name Preview": "名称预览",
     Permissions: "权限",
+    "Edit role: {{name}}": "编辑角色：{{name}}",
+    "Edit role": "编辑角色",
+    "You cannot edit this role": "你不能编辑这个角色",
+    "Create role": "创建角色",
+    "Creating role...": "正在创建角色...",
+    "New role created": "新角色已创建",
+    "Create post": "发帖",
+    "Members can create posts.": "成员可以发布帖子。",
+    "Read published threads": "阅读已发布帖子",
+    "Members can read published threads.": "成员可以阅读已发布的帖子。",
+    "Create reactions": "添加表情回应",
+    "React to posts.": "对帖子添加表情回应。",
+    "Manage posts": "管理帖子",
+    "Manage posts, such as delete, pin and move.":
+      "管理帖子，例如删除、置顶和移动。",
+    "Manage categories": "管理分类",
+    "Create and edit categories.": "创建和编辑分类。",
+    "Create invitations": "创建邀请",
+    "Create invitations for new members.": "为新成员创建邀请。",
+    "Read published library pages": "阅读已发布资料库页面",
+    "Access published items in the library.":
+      "访问资料库中已发布的内容。",
+    "Manage library": "管理资料库",
+    "Manage items in the library, such as publish new pages, accept or reject submissions and edit pages.":
+      "管理资料库内容，例如发布新页面、通过或拒绝投稿，以及编辑页面。",
+    "Submit to library": "投稿到资料库",
+    "Submit new pages to the library.": "向资料库提交新页面。",
+    "Upload assets": "上传素材",
+    "Upload images and media to posts, pages and any other areas that accept media.":
+      "向帖子、页面以及其他支持媒体的区域上传图片和媒体。",
+    "Manage events": "管理活动",
+    "Create, edit and remove events as well as change event hosts.":
+      "创建、编辑和移除活动，也可以更改活动主办方。",
+    "Access member list": "访问成员列表",
+    "Access the full list of registered members.":
+      "访问完整的注册成员列表。",
+    "Access profiles": "访问个人资料",
+    "Access any registered member's profiles.":
+      "访问任意注册成员的个人资料。",
+    "Create collections": "创建收藏集",
+    "Create and manage their own collections.":
+      "创建并管理自己的收藏集。",
+    "Access published collections": "访问已发布收藏集",
+    "Access the full list of published collections from other members.":
+      "访问其他成员已发布收藏集的完整列表。",
+    "Read any collection": "阅读任意收藏集",
+    "Read any published collection from any other member.":
+      "阅读任意其他成员已发布的收藏集。",
+    "Manage collections": "管理收藏集",
+    "Delete, rename or move collections owned by other members.":
+      "删除、重命名或移动其他成员拥有的收藏集。",
+    "Submit to collections": "投稿到收藏集",
+    "Submit items for review to other members' collections.":
+      "向其他成员的收藏集提交待审核内容。",
+    "Use personal access keys": "使用个人访问密钥",
+    "Use personal access keys to authenticate with the Storyden API and MCP server.":
+      "使用个人访问密钥向 Storyden API 和 MCP 服务器认证。",
+    "Manage settings": "管理设置",
+    "Manage the administrative settings for the Storyden installation.":
+      "管理这个 Storyden 实例的管理设置。",
+    "Manage warnings": "管理警告",
+    "Issue member warnings and review their warning history.":
+      "向成员发出警告，并查看他们的警告历史。",
+    "Manage suspensions": "管理封禁",
+    "Suspend or reinstate members from the community.":
+      "封禁成员，或恢复成员的社区访问权限。",
+    "Manage roles": "管理角色",
+    "Create, edit and delete roles as well as assign and remove roles of other members.":
+      "创建、编辑和删除角色，也可以分配或移除其他成员的角色。",
+    "Manage reports": "管理举报",
+    "View and manage all submitted reports from community members.":
+      "查看并管理社区成员提交的所有举报。",
+    "View accounts": "查看账号",
+    "View detailed account information including email addresses and verification status for non-administrator accounts.":
+      "查看非管理员账号的详细信息，包括邮箱地址和验证状态。",
+    "View moderation notes": "查看审核备注",
+    "Read internal staff-only moderation notes attached to member accounts.":
+      "读取成员账号上的内部工作人员审核备注。",
+    "Manage moderation notes": "管理审核备注",
+    "Create and delete internal staff-only moderation notes attached to member accounts.":
+      "创建和删除成员账号上的内部工作人员审核备注。",
+    Administrator: "管理员",
+    "Full administrative access. Use with caution!":
+      "完整管理权限。请谨慎授予！",
     "You cannot change the permissions granted to the default Admin role. This role implicitly holds all permissions.":
       "不能修改默认 Admin 角色的权限。该角色默认拥有全部权限。",
     "You must be logged in to use the knowledgebase Ask tool.":
