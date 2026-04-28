@@ -6,6 +6,7 @@ import { SWRConfig } from "swr";
 
 import { AuthProvider } from "src/auth/AuthProvider";
 
+import { NextDevtoolsI18n } from "@/components/site/NextDevtoolsI18n";
 import { Locale } from "@/i18n/config";
 import { I18nProvider } from "@/i18n/provider";
 import { useCacheProvider } from "@/lib/cache/swr-cache";
@@ -29,6 +30,7 @@ export function Providers({ children, initialLocale }: Props) {
         >
           <DndProvider>
             <Toaster />
+            <NextDevtoolsI18n />
 
             {/* -- */}
             {children}
