@@ -479,11 +479,13 @@ function ClientIPTester({ canRun, initialHeaders }: ClientIPTesterProps) {
       )}
 
       <styled.pre textWrap="wrap">
-        {t("Server HTML Render")} client.ip_address_ssr = '
-        {ssrClientInfo?.ip_address_ssr ?? ""}'
+        {t("Server HTML Render")} client.ip_address_ssr = {"'"}
+        {ssrClientInfo?.ip_address_ssr ?? ""}
+        {"'"}
         <br />
-        {t("Browser React Render")} client.ip_address = '
-        {browserClientInfo?.ip_address ?? ""}'
+        {t("Browser React Render")} client.ip_address = {"'"}
+        {browserClientInfo?.ip_address ?? ""}
+        {"'"}
         <br />
         <br />
         {t(
@@ -659,10 +661,20 @@ function RateLimitTester() {
       </styled.p>
 
       <styled.pre textWrap="wrap">
-        x-rate-limit-limit = '{rateLimitLimit}'<br />
-        x-rate-limit-remaining = '{rateLimitRemaining}'<br />
+        x-rate-limit-limit = {"'"}
+        {rateLimitLimit}
+        {"'"}
+        <br />
+        x-rate-limit-remaining = {"'"}
+        {rateLimitRemaining}
+        {"'"}
+        <br />
         x-rate-limit-reset ={" "}
-        <styled.span textWrap="nowrap">'{rateLimitReset}'</styled.span>
+        <styled.span textWrap="nowrap">
+          {"'"}
+          {rateLimitReset}
+          {"'"}
+        </styled.span>
         <br />
         {estimatedRequestsPerMinute !== null && (
           <>

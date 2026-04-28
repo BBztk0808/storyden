@@ -1,6 +1,6 @@
 import { uniq } from "lodash/fp";
 import { ChangeEvent, useState } from "react";
-import { Controller } from "react-hook-form";
+import { Controller, ControllerRenderProps } from "react-hook-form";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -23,7 +23,62 @@ import {
 } from "@/styled-system/jsx";
 import { lstack } from "@/styled-system/patterns";
 
-import { Props, useModerationSettings } from "./useModerationSettings";
+import { Form, Props, useModerationSettings } from "./useModerationSettings";
+
+type WordListFieldName = "wordReportList" | "wordBlockList";
+
+function WordListField({
+  field,
+}: {
+  field: ControllerRenderProps<Form, WordListFieldName>;
+}) {
+  const { t } = useI18n();
+  const [newWord, setNewWord] = useState("");
+
+  function handleNewWordChange(v: ChangeEvent<HTMLInputElement>) {
+    setNewWord(v.target.value);
+  }
+
+  function handleNewWordSubmit() {
+    const trimmed = newWord.trim();
+    if (trimmed === "") return;
+    const newList = uniq([...(field.value ?? []), trimmed]);
+    field.onChange(newList);
+    setNewWord("");
+  }
+
+  function handleRemoveWord(wordToRemove: string) {
+    const newList = field.value?.filter((w) => w !== wordToRemove) ?? [];
+    field.onChange(newList);
+  }
+
+  return (
+    <LStack>
+      <Flex flexWrap="wrap">
+        {field.value?.map((word) => (
+          <Badge key={word} pr="0">
+            {word}
+            <IconButton
+              type="button"
+              size="xs"
+              variant="ghost"
+              onClick={() => handleRemoveWord(word)}
+            >
+              <CancelIcon />
+            </IconButton>
+          </Badge>
+        ))}
+      </Flex>
+
+      <HStack>
+        <Input size="sm" value={newWord} onChange={handleNewWordChange} />
+        <Button type="button" size="sm" onClick={handleNewWordSubmit}>
+          {t("Add")}
+        </Button>
+      </HStack>
+    </LStack>
+  );
+}
 
 export function ModerationSettingsForm(props: Props) {
   const { t } = useI18n();
@@ -100,62 +155,7 @@ export function ModerationSettingsForm(props: Props) {
             <Controller
               control={control}
               name="wordReportList"
-              render={({ field, fieldState, formState }) => {
-                const [newWord, setNewWord] = useState("");
-
-                function handleNewWordChange(v: ChangeEvent<HTMLInputElement>) {
-                  setNewWord(v.target.value);
-                }
-
-                function handleNewWordSubmit() {
-                  const trimmed = newWord.trim();
-                  if (trimmed === "") return;
-                  const newList = uniq([...(field.value ?? []), trimmed]);
-                  field.onChange(newList);
-                  setNewWord("");
-                }
-
-                function handleRemoveWord(wordToRemove: string) {
-                  const newList =
-                    field.value?.filter((w) => w !== wordToRemove) ?? [];
-                  field.onChange(newList);
-                }
-
-                return (
-                  <LStack>
-                    <Flex flexWrap="wrap">
-                      {field.value?.map((word) => (
-                        <Badge key={word} pr="0">
-                          {word}
-                          <IconButton
-                            type="button"
-                            size="xs"
-                            variant="ghost"
-                            onClick={() => handleRemoveWord(word)}
-                          >
-                            <CancelIcon />
-                          </IconButton>
-                        </Badge>
-                      ))}
-                    </Flex>
-
-                    <HStack>
-                      <Input
-                        size="sm"
-                        value={newWord}
-                        onChange={handleNewWordChange}
-                      />
-                      <Button
-                        type="button"
-                        size="sm"
-                        onClick={handleNewWordSubmit}
-                      >
-                        {t("Add")}
-                      </Button>
-                    </HStack>
-                  </LStack>
-                );
-              }}
+              render={({ field }) => <WordListField field={field} />}
             />
 
             <FormHelperText>
@@ -170,62 +170,7 @@ export function ModerationSettingsForm(props: Props) {
             <Controller
               control={control}
               name="wordBlockList"
-              render={({ field, fieldState, formState }) => {
-                const [newWord, setNewWord] = useState("");
-
-                function handleNewWordChange(v: ChangeEvent<HTMLInputElement>) {
-                  setNewWord(v.target.value);
-                }
-
-                function handleNewWordSubmit() {
-                  const trimmed = newWord.trim();
-                  if (trimmed === "") return;
-                  const newList = uniq([...(field.value ?? []), trimmed]);
-                  field.onChange(newList);
-                  setNewWord("");
-                }
-
-                function handleRemoveWord(wordToRemove: string) {
-                  const newList =
-                    field.value?.filter((w) => w !== wordToRemove) ?? [];
-                  field.onChange(newList);
-                }
-
-                return (
-                  <LStack>
-                    <Flex flexWrap="wrap">
-                      {field.value?.map((word) => (
-                        <Badge key={word} pr="0">
-                          {word}
-                          <IconButton
-                            type="button"
-                            size="xs"
-                            variant="ghost"
-                            onClick={() => handleRemoveWord(word)}
-                          >
-                            <CancelIcon />
-                          </IconButton>
-                        </Badge>
-                      ))}
-                    </Flex>
-
-                    <HStack>
-                      <Input
-                        size="sm"
-                        value={newWord}
-                        onChange={handleNewWordChange}
-                      />
-                      <Button
-                        type="button"
-                        size="sm"
-                        onClick={handleNewWordSubmit}
-                      >
-                        {t("Add")}
-                      </Button>
-                    </HStack>
-                  </LStack>
-                );
-              }}
+              render={({ field }) => <WordListField field={field} />}
             />
 
             <FormHelperText>

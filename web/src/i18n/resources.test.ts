@@ -45,7 +45,7 @@ test("static translation calls exist in every dictionary", async () => {
     const source = await readFile(file, "utf8");
     for (const match of source.matchAll(staticTranslationCall)) {
       const key = match[2];
-      if (!key.includes("\\")) {
+      if (key !== undefined && !key.includes("\\")) {
         keys.add(key);
       }
     }
