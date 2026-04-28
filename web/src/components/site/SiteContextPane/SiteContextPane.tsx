@@ -17,6 +17,7 @@ import { SaveAction } from "../Action/Save";
 import { AdminAnchor } from "../Navigation/Anchors/Admin";
 import { Unready } from "../Unready";
 
+import { getDisplayContent, getDisplayDescription } from "./defaultContent";
 import { Props, useSiteContextPane } from "./useSiteContextPane";
 
 const SiteContextPaneContentField = dynamic(
@@ -31,7 +32,7 @@ const SiteContextPaneContentField = dynamic(
 
 export function SiteContextPane(props: Props) {
   const { ready, error, form, data, handlers } = useSiteContextPane(props);
-  const { t } = useI18n();
+  const { locale, t } = useI18n();
   if (!ready) {
     return <Unready error={error} />;
   }
@@ -39,6 +40,11 @@ export function SiteContextPane(props: Props) {
   const { settings, iconURL, isEditingEnabled, isAdmin, editing } = data;
 
   const isEditingSettings = editing === "settings";
+  const displayDescription = getDisplayDescription(
+    locale,
+    settings.description,
+  );
+  const displayContent = getDisplayContent(locale, settings.content);
 
   return (
     <form
@@ -62,7 +68,7 @@ export function SiteContextPane(props: Props) {
             borderRadius: "md",
             cursor: isEditingSettings ? "help" : "default",
           })}
-          alt="Icon"
+          alt={t("Icon")}
           src={iconURL}
           width={32}
           height={32}
@@ -86,7 +92,7 @@ export function SiteContextPane(props: Props) {
           </FormErrorText>
         </FormControl>
       ) : (
-        <p>{settings.description}</p>
+        <p>{displayDescription}</p>
       )}
 
       {isEditingSettings ? (
@@ -101,10 +107,10 @@ export function SiteContextPane(props: Props) {
           </FormErrorText>
         </FormControl>
       ) : (
-        settings.content && (
+        displayContent && (
           <div
             className="typography"
-            dangerouslySetInnerHTML={{ __html: settings.content }}
+            dangerouslySetInnerHTML={{ __html: displayContent }}
           />
         )
       )}

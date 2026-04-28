@@ -66,8 +66,8 @@ export function ReportModal({
       },
       {
         promiseToast: {
-          loading: loadingMessage,
-          success: successMessage,
+          loading: t(loadingMessage),
+          success: t(successMessage),
         },
       },
     );
@@ -82,7 +82,7 @@ export function ReportModal({
   }
 
   return (
-    <ModalDrawer title={title} {...disclosure}>
+    <ModalDrawer title={t(title)} {...disclosure}>
       <styled.form
         as="form"
         gap="4"
@@ -90,7 +90,9 @@ export function ReportModal({
         onSubmit={handleSubmit}
         className={lstack()}
       >
-        <styled.div color="fg.muted">{description}</styled.div>
+        <styled.div color="fg.muted">
+          {typeof description === "string" ? t(description) : description}
+        </styled.div>
 
         {subject && (
           <styled.div
@@ -131,7 +133,7 @@ export function ReportModal({
             colorPalette="red"
             loading={form.formState.isSubmitting}
           >
-            {submitLabel}
+            {t(submitLabel)}
           </Button>
         </WStack>
       </styled.form>
