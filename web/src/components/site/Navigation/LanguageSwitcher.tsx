@@ -25,7 +25,7 @@ export function LanguageSwitcher() {
       </Trigger>
 
       <Positioner zIndex="tooltip">
-        <Content>
+        <Content zIndex="tooltip">
           <Item value="en" onClick={() => setLocale("en")}>
             {t("lang.english")}
           </Item>
