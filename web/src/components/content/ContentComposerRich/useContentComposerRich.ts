@@ -33,6 +33,8 @@ export type Block = "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 export function useContentComposer(props: ContentComposerProps) {
   const { t } = useI18n();
   const ERROR_UNSUPPORTED_FILE_TYPE = t("File type not supported");
+  const placeholder = props.placeholder ?? t("Write your heart out...");
+  const placeholderRef = useRef(placeholder);
   const { uploadWithProgress } = useImageUpload();
   const [uploadingCount, setUploadingCount] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -132,7 +134,7 @@ export function useContentComposer(props: ContentComposerProps) {
       handleCancel,
     }),
     Placeholder.configure({
-      placeholder: props.placeholder ?? t("Write your heart out..."),
+      placeholder: () => placeholderRef.current,
       includeChildren: true,
       showOnlyCurrent: false,
     }),
@@ -181,6 +183,11 @@ export function useContentComposer(props: ContentComposerProps) {
       props.onChange?.(html, editor.isEmpty);
     },
   });
+
+  useEffect(() => {
+    placeholderRef.current = placeholder;
+    editor?.view.dispatch(editor.state.tr);
+  }, [editor, placeholder]);
 
   // This is a huge hack but it means the composer doesn't need to be made into
   // a controlled component. Baiscally, if the resetKey changes, we reset the

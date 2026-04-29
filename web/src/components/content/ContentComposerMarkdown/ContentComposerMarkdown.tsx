@@ -105,7 +105,7 @@ export function ContentComposerMarkdown(props: ContentComposerProps) {
               transitionProperty: "border-color, border-width",
               overflow: "hidden",
             }}
-            placeholder={t("Write your heart out...")}
+            placeholder={props.placeholder ?? t("Write your heart out...")}
           />
           {isDragging && (
             <ContentDragOverlay
