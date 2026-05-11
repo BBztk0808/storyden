@@ -16,9 +16,10 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 
 type Props = {
   session: Account | undefined;
+  canRegister?: boolean;
 };
 
-export function MemberActions({ session }: Props) {
+export function MemberActions({ session, canRegister }: Props) {
   const account = useSession(session);
 
   return (
@@ -32,7 +33,7 @@ export function MemberActions({ session }: Props) {
         </>
       ) : (
         <>
-          <RegisterAnchor w="full" />
+          {canRegister && <RegisterAnchor w="full" />}
           <LoginAnchor flexShrink={0} />
         </>
       )}

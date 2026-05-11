@@ -30,6 +30,8 @@ import { Input } from "@/components/ui/input";
 import { API_ADDRESS, WEB_ADDRESS } from "@/config";
 import { useI18n } from "@/i18n/provider";
 import { useCapability } from "@/lib/settings/capabilities";
+import { usePublicRegistration } from "@/lib/settings/registration";
+import type { Settings } from "@/lib/settings/settings";
 import { css } from "@/styled-system/css";
 import { Box, HStack, LStack, WStack, styled } from "@/styled-system/jsx";
 import { hstack, lstack } from "@/styled-system/patterns";
@@ -42,6 +44,7 @@ type DatagraphRef = {
 
 type Props = {
   session?: Account;
+  initialSettings?: Settings;
 };
 
 export function AskScreen({ session }: Props) {
@@ -53,7 +56,7 @@ export function AskScreen({ session }: Props) {
         error={t("You must be logged in to use the knowledgebase Ask tool.")}
       >
         <WStack>
-          <RegisterAnchor />
+          {canRegister && <RegisterAnchor />}
           <LoginAnchor />
         </WStack>
       </UnreadyBanner>

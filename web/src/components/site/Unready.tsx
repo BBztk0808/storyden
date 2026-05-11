@@ -11,6 +11,8 @@ import {
   LStack,
   styled,
 } from "@/styled-system/jsx";
+import { usePublicRegistration } from "@/lib/settings/registration";
+import type { Settings } from "@/lib/settings/settings";
 import { deriveError } from "@/utils/error";
 
 import { Spinner } from "../ui/Spinner";

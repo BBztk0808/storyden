@@ -18,7 +18,7 @@ import { useConfirmation } from "@/components/site/useConfirmation";
 import { useI18n } from "@/i18n/provider";
 import { useBeacon } from "@/lib/beacon/useBeacon";
 import { useReportContext } from "@/lib/report/useReportContext";
-import type { SignatureConfig } from "@/lib/settings/settings";
+import type { Settings, SignatureConfig } from "@/lib/settings/settings";
 import { useThreadMutations } from "@/lib/thread/mutation";
 import { withUndo } from "@/lib/thread/undo";
 import { hasPermission } from "@/utils/permissions";
@@ -28,6 +28,7 @@ export type Props = {
   initialPage?: number;
   slug: string;
   thread: ThreadGetResponse;
+  initialSettings?: Settings;
   initialSignatureConfig?: SignatureConfig;
 };
 

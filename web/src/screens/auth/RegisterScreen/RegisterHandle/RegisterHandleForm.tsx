@@ -18,7 +18,7 @@ export function RegisterHandleForm(props: Props) {
       handleWebauthn,
       errors,
     },
-  } = useRegisterHandleForm();
+  } = useRegisterHandleForm(props);
 
   return (
     <styled.form

@@ -34,7 +34,7 @@ export function ReplyBox(props: Props) {
   } = useReplyBox(props);
 
   if (!isLoggedIn) {
-    return <LoginToReply />;
+    return <LoginToReply initialSettings={props.initialSettings} />;
   }
 
   return (
